@@ -30,18 +30,18 @@ This design operates in a fully real-time, sample-by-sample streaming architectu
 
 ## Architecture Overview
 ```
-+--------------------+
-| ARM (Bare-metal)  |
-| - AXI DMA         |
-| - AXI-Lite Ctrl   |
-+----------+---------+
-|
-+----------v---------+
-| Stereo FIR AXI IP |
-| - AXI-Stream IN   |
-| - FIR Core (L/R)  |
-| - AXI-Stream OUT  |
-+--------------------+
++----------------------+
+| ARM (Bare-metal)     |
+| - AXI DMA            |
+| - AXI-Lite Ctrl      |
++----------+-----------+
+           |
++----------v-----------+
+| Stereo FIR AXI IP    |
+| - AXI-Stream IN      |
+| - FIR Core (L/R)     |
+| - AXI-Stream OUT     |
++----------------------+
 ```
 
 - Left and Right channels are processed **synchronously**
