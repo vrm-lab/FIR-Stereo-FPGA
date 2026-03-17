@@ -19,7 +19,7 @@
 //    - Simple moving-average filter (2-tap low-pass)
 //
 // Output samples are printed to console and written to:
-//   "axis_fir_output.txt"
+//    "axis_fir_output.txt"
 // ============================================================================
 
 module tb_fir_axis;
@@ -220,18 +220,18 @@ module tb_fir_axis;
         // ---------------------------------------------------------------------
         $display("--- TEST 1: Impulse Response (Pass-Through) ---");
 
-        axi_write('h00, 32'h0000_0000); // Disable
-        axi_write('h00, 32'h0000_0002); // Clear state
-        axi_write('h00, 32'h0000_0000); // Stay disabled
+        axi_write(10'h000, 32'h0000_0000); // Disable
+        axi_write(10'h000, 32'h0000_0002); // Clear state
+        axi_write(10'h000, 32'h0000_0000); // Stay disabled
 
         // h[0] = 1.0, h[1..] = 0
-        axi_write('h10, {16'd0, COEFF_ONE});
+        axi_write(10'h010, {16'd0, COEFF_ONE});
         for (i = 1; i < FIR_NTAPS; i = i + 1) begin
-            coeff_addr = 'h10 + (i * 4);
+            coeff_addr = 10'h010 + (i * 4);
             axi_write(coeff_addr, {16'd0, COEFF_ZERO});
         end
 
-        axi_write('h00, 32'h0000_0001); // Enable
+        axi_write(10'h000, 32'h0000_0001); // Enable
 
         // Send impulse
         send_stream_data(16'd10000, -16'd10000, 1'b0);
@@ -245,8 +245,8 @@ module tb_fir_axis;
         // ---------------------------------------------------------------------
         $display("--- TEST 2: Moving Average Filter (2-Tap) ---");
 
-        axi_write('h10, {16'd0, 16'd16384}); // h[0] = 0.5
-        axi_write('h14, {16'd0, 16'd16384}); // h[1] = 0.5
+        axi_write(10'h010, {16'd0, 16'd16384}); // h[0] = 0.5
+        axi_write(10'h014, {16'd0, 16'd16384}); // h[1] = 0.5
 
         send_stream_data(16'd10000, 16'd10000, 1'b0);
 
