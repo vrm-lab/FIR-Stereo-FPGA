@@ -24,15 +24,16 @@ This design operates in a fully real-time, sample-by-sample streaming architectu
 - Runtime coefficient reconfiguration
 - Bare-metal C reference application using AXI DMA
 - Independent testbenches for DSP core and AXI wrapper
+- Default pass-through initialization (failsafe audio streaming before AXI-Lite programming)
 
 ---
 
 ## Architecture Overview
 ```
 +--------------------+
-| ARM (Bare-metal) |
-| - AXI DMA        |
-| - AXI-Lite Ctrl  |
+| ARM (Bare-metal)  |
+| - AXI DMA         |
+| - AXI-Lite Ctrl   |
 +----------+---------+
 |
 +----------v---------+
