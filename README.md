@@ -60,11 +60,14 @@ This design operates in a fully real-time, sample-by-sample streaming architectu
 
 ---
 
-## Latency
+### Latency
+- Core Latency: 1 clock cycle
+- Throughput: 1 sample / cycle (fully pipelined)
+- Architecture: Fully parallel transposed FIR (200 taps)
 
-- **Processing latency:** 1 clock cycle  
-- Latency is fixed and deterministic
-- Independent of the number of FIR taps
+Note:
+All tap computations are performed combinationally in a single cycle,
+with a registered output stage.
 
 ---
 
