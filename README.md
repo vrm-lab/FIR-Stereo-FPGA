@@ -60,7 +60,7 @@ This design operates in a fully real-time, sample-by-sample streaming architectu
 
 ---
 
-### Latency
+## Latency
 - Core Latency: 1 clock cycle
 - Throughput: 1 sample / cycle (fully pipelined)
 - Architecture: Fully parallel transposed FIR (200 taps)
@@ -144,6 +144,43 @@ Advanced features such as:
 - Adaptive or time-varying filters
 
 are intentionally **out of scope**.
+
+---
+
+---
+
+## Implementation Results (Vivado)
+
+Target Device: AMD Kria KV260 (ZU5EV)  
+Clock Constraint: 100 MHz  
+
+### Timing
+- Worst Negative Slack (WNS): +1.276 ns  
+- Timing Status: Met
+
+### Resource Utilization
+- LUTs: 31,142  
+- Flip-Flops (FF): 36,416  
+- DSP Slices: 400  
+- BRAM: 2  
+
+### Power
+- Total On-Chip Power: 2.842 W  
+
+---
+
+### Notes
+
+- The design uses a **fully parallel transposed FIR architecture**,  
+  where each tap is mapped to dedicated DSP resources.
+
+- This results in:
+  - **Minimum latency (1 cycle)**
+  - **Maximum throughput (1 sample per clock)**
+
+- Trade-off:
+  - High DSP utilization due to full unrolling
+  - Suitable for **low-latency real-time audio DSP applications**
 
 ---
 
