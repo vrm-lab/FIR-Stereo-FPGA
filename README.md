@@ -194,6 +194,11 @@ A minimal hardware validation was performed using a PYNQ-based DMA test.
 [PASS] Output matches input (pass-through / identity response)
 [INFO] Done.
 ```
+### Notes
+
+- Default configuration behaves as **identity (pass-through)**.
+- Non-zero difference is expected after coefficient update.
+- Validation confirms correct AXI DMA and streaming datapath operation.
 
 ## Design Rationale (Summary)
 
@@ -214,49 +219,6 @@ A minimal hardware validation was performed using a PYNQ-based DMA test.
   - FIR coefficient design is application-specific and better handled by
     external DSP tools.
   - Users are free to generate and load their own coefficients at runtime.
-
----
-
-## Hardware Validation (PYNQ)
-
-A minimal hardware validation was performed using a PYNQ-based DMA test.
-
-### Setup
-- Platform: AMD Kria KV260
-- Interface: AXI DMA (MM2S / S2MM)
-- Data Format: 32-bit interleaved stereo (Q1.15)
-
-### Procedure
-- Bitstream loaded on target
-- Test buffer (stereo ramp signal) generated in software
-- Data streamed to FPGA via AXI DMA
-- Output captured and compared against input
-
-### Example Log
-
-```
-[INFO] Loading bitstream...
-[INFO] Allocating buffers...
-[INFO] Generating test signal...
-[INFO] Starting DMA transfer...
-[INFO] Transfer complete.
-[INFO] Max difference: 0
-[PASS] Output matches input (pass-through / identity response)
-[INFO] Done.
-```
-
-### Notes
-
-- The default FIR configuration initializes as a **pass-through filter**
-  (impulse at tap 0), ensuring safe streaming before coefficient programming.
-
-- When FIR coefficients are updated, output deviation from input is expected,
-  reflecting active filtering behavior.
-
-- This validation confirms:
-  - Correct AXI DMA data flow
-  - Functional AXI-Stream integration
-  - Proper FIR datapath operation on hardware
 
 ---
 
