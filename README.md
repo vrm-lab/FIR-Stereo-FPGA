@@ -147,8 +147,6 @@ are intentionally **out of scope**.
 
 ---
 
----
-
 ## Implementation Results (Vivado)
 
 Target Device: AMD Kria KV260 (ZU5EV)  
