@@ -194,6 +194,7 @@ A minimal hardware validation was performed using a PYNQ-based DMA test.
 [PASS] Output matches input (pass-through / identity response)
 [INFO] Done.
 ```
+
 ### Notes
 
 - Default configuration behaves as **identity (pass-through)**.
